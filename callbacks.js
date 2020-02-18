@@ -22,7 +22,7 @@ function squareEquasion(a,b,c, callback) {
 }
 
 let x = squareEquasion(1, 5, 9 / 4, function(x1,x2){
-    console.log(x1,x2)
+    console.log(x2, x1)
 });
 
 
