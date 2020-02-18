@@ -81,3 +81,37 @@ httpGet("https://swapi.co/api/starships/2/").then(console.log);
     "edited":"2014-12-22T17:35:45.408368Z",
     "url":"https://swapi.co/api/starships/2/"}
 */
+
+//задания
+
+function delay(ms) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(resolve, ms)
+    });
+}
+
+delay(3000).then(() => console.log("Done promise after delay"));
+
+
+let urls = [
+    'user.json',
+    'guest.json'
+];
+
+let chain = Promise.resolve();
+
+let results = [];
+
+// в цикле добавляем задачи в цепочку
+urls.forEach(function (url) {
+    chain = chain
+        .then(() => httpGet(url))
+        .then((result) => {
+            results.push(result);
+        });
+});
+
+// в конце — выводим результаты
+chain.then(() => {
+    console.log(results);
+});
